@@ -1,0 +1,21 @@
+version: v1
+
+id:
+ org: 15a29fea-ebaf-4187-94a3-bccca055e2dd
+ app: c3e2b24f-55bb-4fc3-a673-54fbbc6af3e9
+
+# Optional parameters.
+scanners:
+- sast
+
+languages:
+- python
+- javascript
+
+dast:
+  url: http://10.36.234.10/xvwa/
+  fortipentest_scanner: false
+  full_scan: true
+
+resource:
+  serial_scan: false

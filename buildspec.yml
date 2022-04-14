@@ -1,12 +1,7 @@
 version: 0.2
 phases: 
-  build: 
-    commands: 
-      - "echo Entered the build phase..."
-      - "echo Build started on `date`"
-    finally: 
-      - "echo This always runs even if the install command fails"
-  install: 
+  install:
+    on-failure: CONTINUE
     commands: 
       - "echo Entered the install phase..."
       - "apt-get update -y"
@@ -14,19 +9,14 @@ phases:
       - "apt-get install ca-certificates -y"
       - "apt-get install curl -y"
       - "apt-get install gnupg -y"
-      - "apt-get install sb-release -y"
+      - "apt-get install lsb-release -y"
       - "curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg"
       - "echo  \"deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu  $(lsb_release -cs) stable\" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null"
       - "apt-get update -y"
       - "apt-get install docker-ce docker-ce-cli containerd.io -y"
     finally: 
       - "echo This always runs even if the update or install command fails"
-  post_build: 
-    commands: 
-      - "echo Entered the post_build phase..."
-      - "echo Build completed on `date`"
-      - "docker pull registry.fortidevsec.forticloud.com/fdevsec_sast:latest"
-      - "docker run --rm --mount type=bind,source=$PWD,target=/scan registry.fortidevsec.forticloud.com/fdevsec_sast:latest"
+
   pre_build: 
     commands: 
       - "echo Entered the pre_build phase..."
@@ -34,3 +24,17 @@ phases:
     finally: 
       - "echo This always runs even if the login command fails"
     on-failure: CONTINUE
+
+  build: 
+    commands: 
+      - "echo Entered the build phase..."
+      - "echo Build started on `date`"
+    finally: 
+      - "echo This always runs even if the install command fails"
+
+  post_build: 
+    commands: 
+      - "echo Entered the post_build phase..."
+      - "echo Build completed on `date`"
+      - "docker pull registry.fortidevsec.forticloud.com/fdevsec_sast:latest"
+      - "docker run --rm --mount type=bind,source=$PWD,target=/scan registry.fortidevsec.forticloud.com/fdevsec_sast:latest"

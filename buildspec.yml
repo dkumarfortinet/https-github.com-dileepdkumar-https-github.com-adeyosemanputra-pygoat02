@@ -27,13 +27,13 @@ phases:
       - "docker pull registry.fortidevsec.forticloud.com/fdevsec_sast:latest"
       - "docker run --rm --mount type=bind,source=$PWD,target=/scan registry.fortidevsec.forticloud.com/fdevsec_sast:latest"
   reports:
-  arn:aws:codebuild:us-east-1:549571080079:build/FDS_Pipeline:af0b4b2d-d45f-47f6-98dd-ededd45831a2:report-group/report-group-name-1:
-    files:
-      - "**/*"
-    base-directory: 'target/tests/reports'
-    discard-paths: no
-  reportGroupCucumberJson:
-    files:
-      - 'cucumber/target/cucumber-tests.xml'
-    discard-paths: yes
-    file-format: CUCUMBERJSON # default is JUNITXML
+    arn:aws:codebuild:us-east-1:549571080079:build/FDS_Pipeline:af0b4b2d-d45f-47f6-98dd-ededd45831a2:report-group/report-group-name-1:
+      files:
+        - "**/*"
+      base-directory: 'target/tests/reports'
+      discard-paths: no
+    reportGroupCucumberJson:
+      files:
+        - 'cucumber/target/cucumber-tests.xml'
+      discard-paths: yes
+      file-format: CUCUMBERJSON # default is JUNITXML

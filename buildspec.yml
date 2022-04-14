@@ -11,7 +11,7 @@ phases:
     commands: 
       - "echo Entered the pre_build phase..."
     finally: 
-      - "echo This always runs even if the login command fails"
+      - "echo This always runs even if the login command fails."
 
   build: 
     commands: 

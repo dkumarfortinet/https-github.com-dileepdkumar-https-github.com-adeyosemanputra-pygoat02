@@ -1,7 +1,6 @@
 version: 0.2
 phases: 
   install:
-    on-failure: CONTINUE
     commands: 
       - "echo Entered the install phase..."
     finally: 
@@ -20,9 +19,11 @@ phases:
     finally: 
       - "echo This always runs even if the install command fails"
 
-  post_build: 
+  post_build:
+    on-failure: CONTINUE
     commands: 
       - "echo Entered the post_build phase..."
       - "echo Build completed on `date`"
+      - echo "Run FortiDevSec SAST scanner"
       - "docker pull registry.fortidevsec.forticloud.com/fdevsec_sast:latest"
       - "docker run --rm --mount type=bind,source=$PWD,target=/scan registry.fortidevsec.forticloud.com/fdevsec_sast:latest"

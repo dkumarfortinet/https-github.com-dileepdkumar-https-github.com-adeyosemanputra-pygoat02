@@ -2,28 +2,28 @@ version: 0.1
 phases: 
   install:
     commands: 
-      - "echo Entered the install phase..."
+      - echo "Entered the install phase..."
     finally: 
-      - "echo This always runs even if the update or install command fails"
+      - echo "This always runs even if the update or install command fails"
 
   pre_build: 
     commands: 
-      - "echo Entered the pre_build phase..."
+      - echo "Entered the pre_build phase..."
     finally: 
-      - "echo This always runs even if the login command fails."
+      - echo "This always runs even if the login command fails."
 
   build: 
     commands: 
-      - "echo Entered the build phase..."
-      - "echo Build started on `date`"
+      - echo "Entered the build phase..."
+      - echo "Build started on `date`"
     finally: 
-      - "echo This always runs even if the install command fails"
+      - echo "This always runs even if the install command fails"
 
   post_build:
     on-failure: CONTINUE
     commands: 
-      - "echo Entered the post_build phase..."
-      - "echo Build completed on `date`"
+      - echo "Entered the post_build phase..."
+      - echo "Build completed on `date`"
       - echo "Running FortiDevSec SAST scanner..."
       - "docker pull registry.fortidevsec.forticloud.com/fdevsec_sast:latest"
       - "docker run --rm --mount type=bind,source=$PWD,target=/scan registry.fortidevsec.forticloud.com/fdevsec_sast:latest"

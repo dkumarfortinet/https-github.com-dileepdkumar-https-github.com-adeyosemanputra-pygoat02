@@ -27,4 +27,4 @@ phases:
       - echo "Running FortiDevSec SAST scanner..."
       - env
       - "docker pull registry.fortidevsec.forticloud.com/fdevsec_sast:latest"
-      - "docker run --rm --mount type=bind,source=$PWD,target=/scan registry.fortidevsec.forticloud.com/fdevsec_sast:latest env"
+      - "docker run --rm -e CODEBUILD_CI=$CODEBUILD_CI -e CODEBUILD_BUILD_NUMBER=$CODEBUILD_BUILD_NUMBER -e CODEBUILD_RESOLVED_SOURCE_VERSION=$CODEBUILD_RESOLVED_SOURCE_VERSION --mount type=bind,source=$PWD,target=/scan registry.fortidevsec.forticloud.com/fdevsec_sast:latest env"

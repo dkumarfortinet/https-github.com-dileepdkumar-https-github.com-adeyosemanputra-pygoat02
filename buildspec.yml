@@ -25,6 +25,7 @@ phases:
       - echo "Entered the post_build phase..."
       - echo "Build completed on `date`"
       - echo "Running FortiDevSec SAST scanner..."
+      - ls -al
       - env
       - "docker pull registry.fortidevsec.forticloud.com/fdevsec_sast:latest"
-      - "docker run --rm -e CODEBUILD_CI=$CODEBUILD_CI -e CODEBUILD_BUILD_NUMBER=$CODEBUILD_BUILD_NUMBER -e CODEBUILD_RESOLVED_SOURCE_VERSION=$CODEBUILD_RESOLVED_SOURCE_VERSION -e CODEBUILD_GIT_BRANCH=$CODEBUILD_GIT_BRANCH -e CODEBUILD_GIT_COMMIT=$CODEBUILD_GIT_COMMIT --mount type=bind,source=$PWD,target=/scan registry.fortidevsec.forticloud.com/fdevsec_sast:latest env"
+      - "docker run --rm -e CODEBUILD_CI=$CODEBUILD_CI -e CODEBUILD_BUILD_NUMBER=$CODEBUILD_BUILD_NUMBER -e CODEBUILD_RESOLVED_SOURCE_VERSION=$CODEBUILD_RESOLVED_SOURCE_VERSION -e CODEBUILD_GIT_BRANCH=$CODEBUILD_GIT_BRANCH -e CODEBUILD_GIT_COMMIT=$CODEBUILD_GIT_COMMIT --mount type=bind,source=$PWD,target=/scan registry.fortidevsec.forticloud.com/fdevsec_sast:latest ls -al"

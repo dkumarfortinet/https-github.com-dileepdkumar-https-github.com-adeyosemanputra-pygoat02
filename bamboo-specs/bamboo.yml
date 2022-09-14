@@ -1,6 +1,6 @@
 version: 2
 plan:
-  project-key: DIL
+  project-key: FDS223
   key: PLAN
   name: My Plan
 
@@ -12,5 +12,4 @@ stages:
 Job 1:
   tasks:
     - script:
-        - printenv
         - echo 'Hello from YAML Specs'

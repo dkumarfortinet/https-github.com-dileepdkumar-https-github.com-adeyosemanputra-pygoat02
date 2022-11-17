@@ -19,3 +19,6 @@ dast:
 
 resource:
   serial_scan: false
+  
+fail_pipeline:
+  risk_rating: 2

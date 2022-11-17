@@ -1,8 +1,8 @@
 version: v1
 
 id:
- org: 15a29fea-ebaf-4187-94a3-bccca055e2dd
- app: c3e2b24f-55bb-4fc3-a673-54fbbc6af3e9
+  org: 15a29fea-ebaf-4187-94a3-bccca055e2dd
+  app: 77324ed9-7c5d-4557-8031-6f05d9727d9e
 
 # Optional parameters.
 scanners:
@@ -19,3 +19,6 @@ dast:
 
 resource:
   serial_scan: false
+
+fail_pipeline:
+  risk_rating: 2
